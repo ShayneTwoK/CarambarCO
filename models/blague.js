@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+
   class Blague extends Model {
     /**
      * Helper method for defining associations.
@@ -13,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+  // Donnees de la classe Blague qui sera une Table en BDD grâce à Sequelize
   Blague.init({
     question: DataTypes.STRING,
     answer: DataTypes.STRING
