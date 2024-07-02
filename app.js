@@ -6,6 +6,7 @@ const db = require('./models');
 const { swaggerUi, specs } = require('./config/swagger');
 
 const corsOptions = {
+  origin: 'https://shaynetwok.github.io/carambar-co-githubpages',
   methods: '*', // Autoriser toutes les méthodes (GET, POST, PUT, PATCH, DELETE, OPTIONS)
   allowedHeaders: [
     'Content-Type',
@@ -23,6 +24,16 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+// Configuration de Permissions-Policy
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Permissions-Policy",
+    "attribution-reporting=(), interest-cohort=(), run-ad-auction=(), join-ad-interest-group=(), compute-pressure=(), browsing-topics=()"
+  );
+  next();
+});
 
 app.use(express.json());
 
