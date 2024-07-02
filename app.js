@@ -1,39 +1,64 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const app = express();
 const blagueRoute = require('./routes/blagueRoute');
 const db = require('./models');
 const { swaggerUi, specs } = require('./config/swagger');
 
-const corsOptions = {
-  origin: 'https://shaynetwok.github.io/carambar-co-githubpages',
-  methods: '*', // Autoriser toutes les méthodes (GET, POST, PUT, PATCH, DELETE, OPTIONS)
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'X-Requested-With',
-    'Accept',
-    'Origin',
-    'Access-Control-Allow-Origin',
-    'Access-Control-Allow-Headers',
-    'Access-Control-Allow-Methods',
-    'Access-Control-Allow-Credentials',
-    'X-Custom-Header',
-    'User-Agent'
-  ],
+// const corsOptions = {
+//   origin: "https://shaynetwok.github.io/carambar-co-githubpages/",
+//   methods: "*", // Autoriser toutes les méthodes (GET, POST, PUT, PATCH, DELETE, OPTIONS)
+//   allowedHeaders: [
+//     "Content-Type",
+//     "Authorization",
+//     "X-Requested-With",
+//     "Accept",
+//     "Origin",
+//     "Access-Control-Allow-Origin",
+//     "Access-Control-Allow-Headers",
+//     "Access-Control-Allow-Methods",
+//     "Access-Control-Allow-Credentials",
+//     "X-Custom-Header",
+//     "User-Agent",
+//   ],
+// };
+
+// Use Helmet to secure your app by setting various HTTP headers
+app.use(helmet());
+
+// List of allowed origins
+const allowedOrigins = ['https://shaynetwok.github.io/carambar-co-githubpages', 'http://localhost:4200']; // Add other allowed origins as needed
+
+// Configure CORS options dynamically based on the origin of the request
+const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+  if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { 
+      origin: true, // Reflect the request origin in the CORS response
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      allowedHeaders: [
+        "Content-Type",
+        "Authorization",
+        "X-Requested-With",
+        "Accept",
+        "Origin",
+        "Access-Control-Allow-Origin",
+        "Access-Control-Allow-Headers",
+        "Access-Control-Allow-Methods",
+        "Access-Control-Allow-Credentials",
+        "X-Custom-Header",
+        "User-Agent",
+      ],
+      credentials: true // Enable if you need to send cookies or authentication headers
+    };
+  } else {
+    corsOptions = { origin: false }; // Disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
-app.use(cors(corsOptions));
-
-// Configuration de Permissions-Policy
-
-app.use((req, res, next) => {
-  res.setHeader(
-    "Permissions-Policy",
-    "attribution-reporting=(), interest-cohort=(), run-ad-auction=(), join-ad-interest-group=(), compute-pressure=(), browsing-topics=()"
-  );
-  next();
-});
+app.use(cors(corsOptionsDelegate));
 
 app.use(express.json());
 
