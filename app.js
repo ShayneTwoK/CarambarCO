@@ -28,6 +28,12 @@ app.use(function (req, res, next) {
 
 app.use(cors());
 
+// WIP : Alternative CORS plus simple à experimenté
+// Supprimer la ligne 10 à 29
+// app.use(cors({
+//   origin: 'https://shaynetwok.github.io'
+// }));
+
 app.use(express.json());
 
 // URL de base vers notre API Blague
