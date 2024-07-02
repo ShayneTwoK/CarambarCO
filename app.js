@@ -27,8 +27,10 @@ db.sequelize.sync({ force: false }).then(() => {
  
   // Ecoute le port 3000 et renvoie un message en console en fonction de la connection
   app.listen(PORT, () => {
-    console.log(`SERVER ON, URL : http://localhost:${PORT}`);
-    console.log(`SWAGGER URL : http://localhost:${PORT}/api-docs/v1`);
+    console.log(`SERVER LOCAL ON, URL : http://localhost:${PORT}`);
+    console.log(`SWAGGER URL LOCAL : http://localhost:${PORT}/api-docs/v1`);
+    console.log(`SERVER ONLINE ON, URL : https://carambarco.onrender.com`);
+    console.log(`SWAGGER URL ONLINE : https://carambarco.onrender.com/api-docs/v1`);
     console.log('BDD SYNC');
   });
 }

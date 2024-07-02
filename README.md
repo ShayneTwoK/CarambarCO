@@ -28,8 +28,10 @@ Spécifications Techniques :
  4. Consulter une blague aléatoire (ex : xxx/blagues/random)
 
 LIENS pour l'évaluation :
-API : http://localhost:3000/api/v1
-Swagger : http://localhost:3000/api-docs/v1
+
+- API : https://carambarco.onrender.com/api/v1
+- Swagger : https://carambarco.onrender.com/api-docs/v1
+- Github Pages : https://shaynetwok.github.io/carambar-co-githubpages
 
 Procédure de Développement du projet :
 
@@ -145,7 +147,7 @@ Procédure de Développement du projet :
         - Mettre à jour nos routes, ici le fichier "blagueRoute" comprenant les 4 endpoints.
          Utiliser les annotations Swagger JSDoc pour que l'API soit documentés et testable directement depuis le lien Swagger
 
-        - Enfin, lancer le serveur et rendez-vous sur le lien http://localhost:3000/api-docs/v1 spécifié précédemment
+        - Enfin, lancer le serveur et rendez-vous sur le lien http://localhost:3000/api-docs/v1 en local ou https://carambarco.onrender.com/api-docs/v1 sur le serveur.
 
         npm start
 
