@@ -28,7 +28,7 @@ const { swaggerUi, specs } = require('./config/swagger');
 app.use(helmet());
 
 // List of allowed origins
-const allowedOrigins = ['https://shaynetwok.github.io/carambar-co-githubpages', 'http://localhost:4200']; // Add other allowed origins as needed
+const allowedOrigins = ['https://shaynetwok.github.io/carambar-co-githubpages', 'http://localhost:4200', 'https://shaynetwok.github.io/']; // Add other allowed origins as needed
 
 // Configure CORS options dynamically based on the origin of the request
 const corsOptionsDelegate = (req, callback) => {
