@@ -155,7 +155,7 @@ Procédure de Développement du projet :
     6. CORS
      
         - Pour finaliser le projet et faire que le FRONT ONLINE Github Pages soit autorisé à communiquer avec l'API ONLINE sur le serveur Render.com
-          il faut configurer le CORS comme suit pour autoriser la racine du site "https://shaynetwok.github.io" comme suit :
+          il faut configurer le CORS pour autoriser la racine du site "https://shaynetwok.github.io" comme suit :
           
           ```
           // Add headers before the routes are defined
