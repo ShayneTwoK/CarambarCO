@@ -32,6 +32,7 @@ LIENS pour l'évaluation :
 - API : https://carambarco.onrender.com/api/v1
 - Swagger : https://carambarco.onrender.com/api-docs/v1
 - Github Pages : https://shaynetwok.github.io/carambar-co-githubpages
+- Repository client Github Pages : https://github.com/ShayneTwoK/carambar-co-githubpages
 
 Procédure de Développement du projet :
 
