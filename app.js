@@ -1,62 +1,33 @@
 const express = require('express');
 const cors = require('cors');
-const helmet = require('helmet');
 const app = express();
 const blagueRoute = require('./routes/blagueRoute');
 const db = require('./models');
 const { swaggerUi, specs } = require('./config/swagger');
 
-// const corsOptions = {
-//   origin: "https://shaynetwok.github.io/carambar-co-githubpages/",
-//   methods: "*", // Autoriser toutes les méthodes (GET, POST, PUT, PATCH, DELETE, OPTIONS)
-//   allowedHeaders: [
-//     "Content-Type",
-//     "Authorization",
-//     "X-Requested-With",
-//     "Accept",
-//     "Origin",
-//     "Access-Control-Allow-Origin",
-//     "Access-Control-Allow-Headers",
-//     "Access-Control-Allow-Methods",
-//     "Access-Control-Allow-Credentials",
-//     "X-Custom-Header",
-//     "User-Agent",
-//   ],
-// };
 
-// Use Helmet to secure your app by setting various HTTP headers
-app.use(helmet());
+// Add headers before the routes are defined
+app.use(function (req, res, next) {
 
-// List of allowed origins
-const allowedOrigins = ['https://shaynetwok.github.io/carambar-co-githubpages', 'http://localhost:4200', 'https://shaynetwok.github.io/']; // Add other allowed origins as needed
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io/carambar-co-githubpages/');
+  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io/carambar-co-githubpages');
+  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io/');
+  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io');
 
-// Configure CORS options dynamically based on the origin of the request
-const corsOptionsDelegate = (req, callback) => {
-  let corsOptions;
-  if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { 
-      origin: true, // Reflect the request origin in the CORS response
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      allowedHeaders: [
-        "Content-Type",
-        "Authorization",
-        "X-Requested-With",
-        "Accept",
-        "Origin",
-        "Access-Control-Allow-Origin",
-        "Access-Control-Allow-Headers",
-        "Access-Control-Allow-Methods",
-        "Access-Control-Allow-Credentials",
-        "X-Custom-Header",
-        "User-Agent",
-      ],
-      credentials: true // Enable if you need to send cookies or authentication headers
-    };
-  } else {
-    corsOptions = { origin: false }; // Disable CORS for this request
-  }
-  callback(null, corsOptions); // callback expects two parameters: error and options
-};
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
 
 app.use(cors(corsOptionsDelegate));
 
