@@ -10,9 +10,6 @@ const { swaggerUi, specs } = require('./config/swagger');
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io/carambar-co-githubpages/');
-  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io/carambar-co-githubpages');
-  res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io/');
   res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io');
 
   // Request methods you wish to allow
