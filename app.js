@@ -5,11 +5,24 @@ const blagueRoute = require('./routes/blagueRoute');
 const db = require('./models');
 const { swaggerUi, specs } = require('./config/swagger');
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+const corsOptions = {
+  methods: '*', // Autoriser toutes les méthodes (GET, POST, PUT, PATCH, DELETE, OPTIONS)
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers',
+    'Access-Control-Allow-Methods',
+    'Access-Control-Allow-Credentials',
+    'X-Custom-Header',
+    'User-Agent'
+  ],
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
