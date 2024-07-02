@@ -151,10 +151,12 @@ Procédure de Développement du projet :
         - Enfin, lancer le serveur et rendez-vous sur le lien http://localhost:3000/api-docs/v1 en local ou https://carambarco.onrender.com/api-docs/v1 sur le serveur.
 
         npm start
-
-   6. CORS
+        
+    6. CORS
+     
         - Pour finaliser le projet et faire que le FRONT ONLINE Github Pages soit autorisé à communiquer avec l'API ONLINE sur le serveur Render.com
           il faut configurer le CORS comme suit pour autoriser la racine du site "https://shaynetwok.github.io" comme suit :
+          
           ```
           // Add headers before the routes are defined
           app.use(function (req, res, next) {
