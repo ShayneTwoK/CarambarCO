@@ -152,3 +152,29 @@ Procédure de Développement du projet :
 
         npm start
 
+   6. CORS
+        - Pour finaliser le projet et faire que le FRONT ONLINE Github Pages soit autorisé à communiquer avec l'API ONLINE sur le serveur Render.com
+          il faut configurer le CORS comme suit pour autoriser la racine du site "https://shaynetwok.github.io" comme suit :
+          ```
+          // Add headers before the routes are defined
+          app.use(function (req, res, next) {
+          
+            // Website you wish to allow to connect
+            res.setHeader('Access-Control-Allow-Origin', 'https://shaynetwok.github.io');
+          
+            // Request methods you wish to allow
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+          
+            // Request headers you wish to allow
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
+          
+            // Set to true if you need the website to include cookies in the requests sent
+            // to the API (e.g. in case you use sessions)
+            res.setHeader('Access-Control-Allow-Credentials', true);
+          
+            // Pass to next layer of middleware
+            next();
+          });
+          
+          app.use(cors()); 
+          ```
